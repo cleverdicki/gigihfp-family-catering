@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
+  it { should have_many(:menu_categories) }
+
+  it { should have_many(:menus).through(:menu_categories) }
+
   it 'is valid with a name and a description' do
     expect(FactoryBot.build(:category)).to be_valid
   end
