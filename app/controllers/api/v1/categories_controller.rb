@@ -16,9 +16,9 @@ class Api::V1::CategoriesController < ApplicationController
   # POST /categories
   def create
     @category = Category.new(category_params)
-
+    
     if @category.save
-      render json: @category, status: :created, location: @category
+      render json: @category, status: :created
     else
       render json: @category.errors, status: :unprocessable_entity
     end
@@ -36,6 +36,7 @@ class Api::V1::CategoriesController < ApplicationController
   # DELETE /categories/1
   def destroy
     @category.destroy
+    render status: :no_content
   end
 
   private
