@@ -3,8 +3,12 @@ require 'rails_helper'
 RSpec.describe Menu, type: :model do
   it { should have_many(:menu_categories) }
 
+  it { should have_many(:order_menus) }
+
   it { should have_many(:categories).through(:menu_categories) }
-  
+
+  it { should have_many(:orders).through(:order_menus) }
+
   it 'is valid with a name and a description' do
     expect(FactoryBot.build(:menu)).to be_valid
   end
