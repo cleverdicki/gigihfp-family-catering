@@ -1,4 +1,4 @@
-class MenuCategoriesController < ApplicationController
+class Api::V1::MenuCategoriesController < ApplicationController
   before_action :set_menu_category, only: %i[ show update destroy ]
 
   # GET /menu_categories

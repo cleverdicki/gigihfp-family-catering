@@ -1,4 +1,4 @@
-class OrderMenusController < ApplicationController
+class Api::V1::OrderMenusController < ApplicationController
   before_action :set_order_menu, only: %i[ show update destroy ]
 
   # GET /order_menus
