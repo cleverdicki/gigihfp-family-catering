@@ -18,7 +18,7 @@ class Api::V1::MenuCategoriesController < ApplicationController
     @menu_category = MenuCategory.new(menu_category_params)
 
     if @menu_category.save
-      render json: @menu_category, status: :created, location: @menu_category
+      render json: @menu_category, status: :created
     else
       render json: @menu_category.errors, status: :unprocessable_entity
     end

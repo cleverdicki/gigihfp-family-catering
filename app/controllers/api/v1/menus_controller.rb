@@ -5,7 +5,7 @@ class Api::V1::MenusController < ApplicationController
   def index
     @menus = Menu.all
 
-    render json: @menus
+    render json: @menus, :include => :categories
   end
 
   # GET /menus/1
@@ -16,9 +16,10 @@ class Api::V1::MenusController < ApplicationController
   # POST /menus
   def create
     @menu = Menu.new(menu_params)
+    @menu.categories << Category.find(category_params)
 
     if @menu.save
-      render json: @menu, status: :created, location: @menu
+      render json: @menu, status: :created
     else
       render json: @menu.errors, status: :unprocessable_entity
     end
@@ -47,5 +48,9 @@ class Api::V1::MenusController < ApplicationController
     # Only allow a list of trusted parameters through.
     def menu_params
       params.require(:menu).permit(:name, :price, :description)
+    end
+
+    def category_params
+      params.require(:category_id)
     end
 end
