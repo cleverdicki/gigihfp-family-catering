@@ -3,7 +3,11 @@ class Api::V1::OrdersController < ApplicationController
 
   # GET /orders
   def index
-    @orders = Order.all
+    if filter_params["filter_name"] == "daily"
+      @orders = Order.daily_report
+    else
+      @orders = Order.all
+    end
 
     render json: @orders, :include => :order_menus
   end
@@ -61,5 +65,9 @@ class Api::V1::OrdersController < ApplicationController
 
     def menu_params
       params.require(:menu).permit(:menu_name, :quantity)
+    end
+
+    def filter_params
+      params.require(:filter).permit(:filter_name)
     end
 end

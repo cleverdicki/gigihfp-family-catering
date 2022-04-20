@@ -15,8 +15,13 @@ class Api::V1::MenuCategoriesController < ApplicationController
 
   # POST /menu_categories
   def create
-    @menu_category = MenuCategory.new(menu_category_params)
-
+    new_params = menu_category_params
+    menu_id = Menu.find_id(menu_category_params[:menu_id])
+    category_id = Category.find_id(menu_category_params[:category_id])
+    new_params[:menu_id] = menu_id[0]
+    new_params[:category_id] = category_id[0]
+    @menu_category = MenuCategory.new(new_params)
+    # @menu_category = MenuCategory.new(menu_category_params)
     if @menu_category.save
       render json: @menu_category, status: :created
     else
@@ -35,7 +40,10 @@ class Api::V1::MenuCategoriesController < ApplicationController
 
   # DELETE /menu_categories/1
   def destroy
-    @menu_category.destroy
+    menu_id = Menu.find_id(menu_category_params[:menu_id])
+    category_id = Category.find_id(menu_category_params[:category_id])
+    @data_to_destroy = MenuCategory.find_data(menu_id[0], category_id[0])
+    @data_to_destroy.destroy
   end
 
   private

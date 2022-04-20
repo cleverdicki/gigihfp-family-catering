@@ -4,5 +4,6 @@ class Category < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
+
   scope :find_id, ->(name) { where("name = ?", name).pluck(:id) }
 end

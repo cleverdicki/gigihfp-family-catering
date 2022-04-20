@@ -32,7 +32,11 @@ RSpec.describe "Api::V1::Orders", type: :request do
         }
       }
 
-      get "/api/v1/orders"
+      get "/api/v1/orders", params: {
+        filter: {
+          filter_name: ""
+        }
+      }
     end
 
     it 'returns all posts' do
