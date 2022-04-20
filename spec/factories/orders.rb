@@ -3,6 +3,5 @@ FactoryBot.define do
     customer_name { "MyString" }
     customer_email { "bigdaddy@generasigigih.com" }
     total_price { 1.5 }
-    status { "NEW" }
   end
 end

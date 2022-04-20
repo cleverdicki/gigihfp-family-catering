@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  has_many :order_menus
+  has_many :order_menus, dependent: :delete_all
   has_many :menus, through: :order_menus
 
   validates :customer_name, presence: true

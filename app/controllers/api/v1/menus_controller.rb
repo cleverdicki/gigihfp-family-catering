@@ -16,10 +16,10 @@ class Api::V1::MenusController < ApplicationController
   # POST /menus
   def create
     @menu = Menu.new(menu_params)
-    @menu.categories << Category.find(category_params)
+    @menu.categories << Category.find(Category.find_id(category_params["category_name"]))
 
     if @menu.save
-      render json: @menu, status: :created
+      render json: @menu, status: :created, :include => :categories
     else
       render json: @menu.errors, status: :unprocessable_entity
     end
@@ -51,6 +51,6 @@ class Api::V1::MenusController < ApplicationController
     end
 
     def category_params
-      params.require(:category_id)
+      params.require(:category).permit(:category_name)
     end
 end

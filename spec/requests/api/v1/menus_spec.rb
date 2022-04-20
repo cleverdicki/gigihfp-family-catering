@@ -35,7 +35,9 @@ RSpec.describe "Api::V1::Menus", type: :request do
             price: 1.5,
             description: "So Yummy"
           },
-          category_id: 1
+          category: {
+            category_name: "Local"
+          }
         }
       end
 
@@ -59,7 +61,9 @@ RSpec.describe "Api::V1::Menus", type: :request do
             price: 1.5,
             description: ""
           },
-          category_id: 1
+          category: {
+            category_name: "Local"
+          }
         }
       end
 

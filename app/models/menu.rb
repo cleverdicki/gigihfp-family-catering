@@ -7,4 +7,7 @@ class Menu < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true, length: { maximum: 150 }
   validates :price, presence: true, numericality: :only_integer, comparison: { greater_than: 0.01 }
+
+  scope :find_price, ->(name) { where("name = ?", name).pluck(:price) }
+  scope :find_id, ->(name) { where("name = ?", name).pluck(:id) }
 end
