@@ -176,12 +176,21 @@ GEM
     rspec-support (3.11.0)
     shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
+    sprockets (4.0.3)
+      concurrent-ruby (~> 1.0)
+      rack (> 1, < 3)
+    sprockets-rails (3.4.2)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
+      sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
     strscan (3.0.1)
     thor (1.2.1)
     timeout (0.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    tzinfo-data (1.2022.1)
+      tzinfo (>= 1.0.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -200,11 +209,12 @@ DEPENDENCIES
   rails-controller-testing
   rspec-rails
   shoulda-matchers
+  sprockets-rails
   sqlite3 (~> 1.4)
   tzinfo-data
 
 RUBY VERSION
-   ruby 3.0.0p0
+   ruby 3.0.3p157
 
 BUNDLED WITH
-   2.2.3
+   2.2.32

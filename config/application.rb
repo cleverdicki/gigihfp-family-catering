@@ -1,6 +1,8 @@
 require_relative "boot"
 
 require "rails/all"
+require "sprockets/railtie"
+
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -22,6 +24,9 @@ module GigihfpFamilyCatering
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
+    config.action_dispatch.default_headers = {
+      'X-Frame-Options' => 'ALLOWFROM replit.com'
+    }
     config.api_only = true
   end
 end
