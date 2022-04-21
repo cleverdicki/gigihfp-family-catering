@@ -24,12 +24,16 @@ class Api::V1::OrdersController < ApplicationController
 
     if @order.save
       @chek_price = Menu.find_price(menu_params["menu_name"])
+      
       @result_price = @chek_price[0] * menu_params["quantity"].to_f
+      
       @order_menu = OrderMenu.find_by(order_id: @order.id)
       @order_menu.update_column(:quantity, menu_params["quantity"])
       @order_menu.update_column(:total_price, @result_price)
+      
       @main_order = Order.find(@order.id)
       @main_order.update_column(:total_price, @result_price)
+      
       @final_order = Order.find(@order.id)
 
       render json: @final_order, status: :created, :include => :order_menus
@@ -40,7 +44,7 @@ class Api::V1::OrdersController < ApplicationController
 
   # PATCH/PUT /orders/1
   def update
-    if @order.update(order_params)
+    if @order.update(update_order_params)
       render json: @order
     else
       render json: @order.errors, status: :unprocessable_entity
@@ -61,6 +65,10 @@ class Api::V1::OrdersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def order_params
       params.require(:order).permit(:customer_name, :customer_email)
+    end
+  
+    def update_order_params
+      params.require(:update_order).permit(:customer_name, :customer_email, :status)
     end
 
     def menu_params

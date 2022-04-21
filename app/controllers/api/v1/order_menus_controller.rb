@@ -15,10 +15,29 @@ class Api::V1::OrderMenusController < ApplicationController
 
   # POST /order_menus
   def create
-    @order_menu = OrderMenu.new(order_menu_params)
+    new_params = order_menu_params
+    menu_id = Menu.find_id(order_menu_params[:menu_id])
+    new_params[:order_id] = order_menu_params[:order_id]
+    new_params[:menu_id] = menu_id[0]
+    new_params[:quantity] = order_menu_params[:quantity]
+    @order_menu = OrderMenu.new(new_params)
 
     if @order_menu.save
-      render json: @order_menu, status: :created, location: @order_menu
+      @check_order_price = Order.find_price(order_menu_params[:order_id])
+      @chek_menu_price = Menu.find_price(order_menu_params[:menu_id])
+
+      @current_price = @chek_menu_price[0] * order_menu_params[:quantity].to_f
+      @result_price = @check_order_price[0] + @current_price
+
+      @update_order_menu = OrderMenu.find(@order_menu.id)
+      @update_order_menu.update_column(:total_price, @current_price)
+
+      @update_order = Order.find(order_menu_params[:order_id])
+      @update_order.update_column(:total_price, @result_price)
+
+      @final_order = Order.find(order_menu_params[:order_id])
+
+      render json: @final_order, status: :created
     else
       render json: @order_menu.errors, status: :unprocessable_entity
     end
@@ -46,6 +65,6 @@ class Api::V1::OrderMenusController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_menu_params
-      params.require(:order_menu).permit(:order_id, :menu_id, :quantity, :total_price)
+      params.require(:order_menu).permit(:order_id, :menu_id, :quantity)
     end
 end
