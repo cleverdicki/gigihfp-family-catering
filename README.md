@@ -10,33 +10,9 @@ Table of contents:
 
   * [Category](#category)
 
-    * GET
-
-    * POST
-
-    * PUT
-
-    * DELETE
-
   * [Menu](#menu)
 
-    * GET
-
-    * POST
-
-    * PUT
-
-    * DELETE
-
   * [Order](#order)
-
-    * GET
-
-    * POST
-
-    * PUT
-
-    * DELETE
 
   * [Additional Requirement](#additional-requirement)
 
