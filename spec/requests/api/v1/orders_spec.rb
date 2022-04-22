@@ -157,14 +157,11 @@ RSpec.describe "Api::V1::Orders", type: :request do
         }
 
         put "/api/v1/orders/1", params: {
-          order: {
+          update_order: {
             customer_name: "Change",
-            customer_email: "changetest@gigih.com"
+            customer_email: "changetest@gigih.com",
+            status: "PAID"
           },
-          menu: {
-            menu_name: "Bubur",
-            quantity: 3
-          }
         }
       end
 
