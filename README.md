@@ -2,23 +2,13 @@
 
 Table of contents:
 
-* [Database Design](#-database-design)
+* [Database Design](#database-design)
 
-* [Application Workflow](#-application-workflow)
+* [Application Workflow](#application-workflow)
 
-* [API Request](#-api-request)
+* [API Request](#api-request)
 
-  * [Category](#-category)
-
-    * GET
-
-    * POST
-
-    * PUT
-
-    * DELETE
-
-  * [Menu](#-menu)
+  * [Category](#category)
 
     * GET
 
@@ -28,7 +18,7 @@ Table of contents:
 
     * DELETE
 
-  * [Order](#-order)
+  * [Menu](#menu)
 
     * GET
 
@@ -38,7 +28,17 @@ Table of contents:
 
     * DELETE
 
-  * [Additional Requirement](#-additional-requirement)
+  * [Order](#order)
+
+    * GET
+
+    * POST
+
+    * PUT
+
+    * DELETE
+
+  * [Additional Requirement](#additional-requirement)
 
 In this project, I created an API application where the UI of the application does not exist. I created this project on my local machine first, and after finishing some features I moved to Replit so that my project can adapt to Replit environment. At this moment, this project can only run in Replit because when I tried to run it on my local machine, it gave me some errors (Next time i will delete this part when it's fixed). I will explain the database design of this project first.
 
